@@ -31,22 +31,22 @@ public class Camera2 extends LinearOpMode {
         detection = new Detection(hardwareMap, telemetry);
         intake = new Intake(hardwareMap, telemetry);
         hor_lift = new Horizontal_Lift(hardwareMap, telemetry);
-        hor_lift.setpos(0.45);
-        intake.vision();
+        hor_lift.setPos(0.45);
+        intake.setVision();
         waitForStart();
 
         double current_pose = 0.33;
 
 
         while (opModeIsActive()) {
-            intake.rotate_auto(detection.getheading());
+            intake.rotate_Auto(detection.getheading());
             if(gamepad1.a){
                 intake.open();
-                intake.setsample_take();
+                intake.setSampleTake();
                 sleep(800);
                 intake.close();
                 sleep(150);
-                intake.vision();
+                intake.setVision();
                 sleep(1000);
             }
             telemetry.addData("y", detection.getYDist()*pixelstoinches);

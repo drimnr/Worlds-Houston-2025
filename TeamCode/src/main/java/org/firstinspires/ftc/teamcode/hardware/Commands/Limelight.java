@@ -68,9 +68,7 @@ public class Limelight {
         ans = result.getPythonOutput();
     }
     public boolean isDetected() {
-        if(ans[0] != 0)
-            return true;
-        return false;
+        return ans[0] != 0;
     }
     public double get_w() {
         return ans[4];

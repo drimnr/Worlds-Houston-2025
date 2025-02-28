@@ -28,6 +28,9 @@ public class FConstants {
         FollowerConstants.lateralZeroPowerAcceleration = -65;
 
 
+        FollowerConstants.useBrakeModeInTeleOp = true;
+
+
         FollowerConstants.translationalPIDFCoefficients.setCoefficients(0.15,0.0002,0.0005,0);
 
         FollowerConstants.headingPIDFCoefficients.setCoefficients(2.5,0.00004,0.01,0);

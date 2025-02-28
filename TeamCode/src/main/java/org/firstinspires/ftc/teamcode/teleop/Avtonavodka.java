@@ -33,23 +33,23 @@ public class Avtonavodka extends LinearOpMode {
 
         waitForStart();
         hor_lift.close();
-        intake.setperedacha();
+        intake.setPeredacha();
         double current_pose = 0.25;
 
 
         while (opModeIsActive()) {
             if(detection.detected){
-                intake.rotate_auto(detection.getheading());
-                intake.setperedacha();
+                intake.rotate_Auto(detection.getheading());
+                intake.setPeredacha();
                 if(Math.abs(detection.getYDist()) < 50) {
                     sleep(500);
-                    hor_lift.setpos(current_pose-(detection.getYDist()+28) * 0.0002);
+                    hor_lift.setPos(current_pose-(detection.getYDist()+28) * 0.0002);
                     intake.open();
-                    intake.setsample_take();
+                    intake.setSampleTake();
                     sleep(800);
                     intake.close();
                     sleep(150);
-                    intake.setperedacha();
+                    intake.setPeredacha();
                     sleep(10000);
                 }
                 if (detection.getYDist() < -50 && current_pose < 0.68)
@@ -62,10 +62,10 @@ public class Avtonavodka extends LinearOpMode {
                 if (current_pose < 0.68)
                     current_pose += 0.003;
             }
-            hor_lift.setpos(current_pose);
+            hor_lift.setPos(current_pose);
             ElapsedTime timer = new ElapsedTime();
             sleep(10);
-            hor_lift.setpos(current_pose);
+            hor_lift.setPos(current_pose);
         }
     }
 }

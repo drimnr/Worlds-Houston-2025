@@ -45,40 +45,40 @@ public class AutoNavigationIntake extends OpMode
     @Override
     public void start() {
         hor_lift.close();
-        intake.setperedacha();
+        intake.setPeredacha();
     }
     double current_pose = 0;
     @Override
     public void loop() {
         if(detection.detected){
-            intake.rotate_auto(detection.getheading());
-            intake.setperedacha();
+            intake.rotate_Auto(detection.getheading());
+            intake.setPeredacha();
             if (detection.getYDist() < -50 && current_pose < 0.33)
                 current_pose+=0.001;
             if (detection.getYDist() > 50 && current_pose > 0)
                 current_pose-=0.001;
             if(Math.abs(detection.getYDist()) < 50) {
                 intake.open();
-                intake.setsample_take();
+                intake.setSampleTake();
                 ElapsedTime timer1 = new ElapsedTime();
                 while(timer1.milliseconds() > 2000){
                     intake.open();
-                    intake.setsample_take();
+                    intake.setSampleTake();
                 }
                 intake.close();
                 ElapsedTime timer2 = new ElapsedTime();
                 while(timer2.milliseconds() > 200)  {
                     intake.close();
                 }
-                intake.setperedacha();
+                intake.setPeredacha();
                 ElapsedTime timer3 = new ElapsedTime();
                 while(timer2.milliseconds() > 200000)  {
                     intake.close();
                 }
             }
-            hor_lift.setpos(current_pose);
+            hor_lift.setPos(current_pose);
             ElapsedTime timer = new ElapsedTime();
-            while(timer.milliseconds() > 60) hor_lift.setpos(current_pose);
+            while(timer.milliseconds() > 60) hor_lift.setPos(current_pose);
         }
 
     }

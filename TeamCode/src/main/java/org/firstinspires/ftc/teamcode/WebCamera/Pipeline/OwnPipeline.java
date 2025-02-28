@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.WebCamera.Pipeline;
 
+import android.annotation.SuppressLint;
+
 import com.acmerobotics.dashboard.config.Config;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class OwnPipeline extends OpenCvPipeline {
     public static double MAX_CONTOUR_AREA = 20000;
     public static double MAX_RECTANGLE_AREA = 20000;
 
-    private Point cameraCenter = new Point(320, 180);
+    private final Point cameraCenter = new Point(320, 180);
     private boolean detected = false;
 
     public OwnPipeline(Telemetry telemetry, Detection detection) {
@@ -38,6 +40,7 @@ public class OwnPipeline extends OpenCvPipeline {
     double nearestH = 0;
     double minDistance = Double.MAX_VALUE;
 
+    @SuppressLint("DefaultLocale")
     @Override
     public Mat processFrame(Mat input) {
         Mat resizedInput = new Mat();
@@ -77,7 +80,7 @@ public class OwnPipeline extends OpenCvPipeline {
             telemetry.addData("Angle:", nearestAngle);
             detection.updateDistances(nearestCenter.x - (cameraCenter.x), nearestCenter.y - (cameraCenter.y), nearestAngle);
         } else {
-            telemetry.addData("Detected", detected);
+            telemetry.addData("Detected", false);
         }
         telemetry.update();
         detection.detected = detected;
@@ -86,6 +89,7 @@ public class OwnPipeline extends OpenCvPipeline {
         return output;
     }
 
+    @SuppressLint("DefaultLocale")
     private void processContours(Mat mask, Mat input) {
         Imgproc.GaussianBlur(mask, mask, new Size(15, 15), 0);
 

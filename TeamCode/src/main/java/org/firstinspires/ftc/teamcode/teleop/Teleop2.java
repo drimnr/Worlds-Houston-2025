@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.teleop;
 
 import com.pedropathing.localization.PoseUpdater;
 import com.pedropathing.util.Constants;
-import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -62,47 +61,47 @@ public class Teleop2 extends OpMode
 
 
         horlift.close();
-        intake.setmidpovishe_take();
+        intake.setMidPovisheTake();
         intake.close();
-        outtake.setZad_take();
+        outtake.setZadTake();
     }
 
     @Override
     public void loop() {
         // intake
         if (gamepad1.dpad_up) {
-            intake.rotate_mid();
+            intake.rotate_Mid();
         }
         if (gamepad1.dpad_left) {
-            intake.rotate_left();
+            intake.rotate_Left();
         }
         if (gamepad1.dpad_right) {
-            intake.rotate_right();
+            intake.rotate_Right();
         }
 
         if (gamepad2.a || gamepad1.right_bumper) {
             take = true;
             timer1.reset();
-            intake.setsample_take();
+            intake.setSampleTake();
             intake.open();
             intake.close();
         }
         if (take && timer1.milliseconds() > 200) {
-            intake.setmidpovishe_take();
+            intake.setMidPovisheTake();
             take = false;
         }
         if (gamepad2.b) {
-            intake.setmid_take();
+            intake.setMidTake();
             intake.open();
         }
         if (gamepad2.x) {
             timerpd.reset();
             peredtake = true;
-            intake.open_chut();
+            intake.open_Chut();
         }
         if(peredtake && timerpd.milliseconds() > 100){
-            intake.rotate_mid();
-            intake.setperedacha();
+            intake.rotate_Mid();
+            intake.setPeredacha();
         }
         if(peredtake && timerpd.milliseconds() > 200){
             intake.close();
@@ -112,12 +111,12 @@ public class Teleop2 extends OpMode
 
         if (gamepad2.right_bumper) {
             horlift.open();
-            intake.setmidpovishe_take();
+            intake.setMidPovisheTake();
             intake.open();
         }
         //horizontal lift
         if (gamepad2.left_bumper) {
-            outtake.setPered_take();
+            outtake.setPeredTake();
             horlift.close();
         }
 
@@ -126,19 +125,19 @@ public class Teleop2 extends OpMode
         //outtake
         if (gamepad2.dpad_up) {
             outtaketake = true;
-            outtake.mayat_up1();
+            outtake.mayatUp1();
             outtake.grab();
             timer.reset();
         }
         if (outtaketake && timer.milliseconds() > 150) {
-            intake.setmid_take();
+            intake.setMidTake();
             intake.open();
-            outtake.mayat_mid();outtake.sethb();outtaketake = false;
+            outtake.mayatMid();outtake.setHB();outtaketake = false;
         }
         if (gamepad1.a || gamepad2.dpad_down) {
             outtake.release();
-            outtake.mayat_down();
-            outtake.setZad_take();
+            outtake.mayatDown();
+            outtake.setZadTake();
         }
         if (gamepad1.y || gamepad2.dpad_left) {
             timerbt.reset();
@@ -146,14 +145,14 @@ public class Teleop2 extends OpMode
             outtake.grab();
         }
         if (borttake && timerbt.milliseconds() > 180) {
-            outtake.setautospec();
+            outtake.setAutoSpec();
             borttake = false;
         }
         if(gamepad2.options) {
-            outtake.setspecimen();
+            outtake.setSpec();
         }
         if(gamepad2.share) {
-            intake.vision();
+            intake.setVision();
         }
 
         if (gamepad2.y || gamepad1.left_bumper) {
@@ -167,7 +166,7 @@ public class Teleop2 extends OpMode
             horlift.close();
         }
         if(gamepad2.touchpad) {
-            intake.setauto();
+            intake.setAuto();
         }
 
 
@@ -206,11 +205,11 @@ public class Teleop2 extends OpMode
             }
             if (Math.abs(gamepad2.right_trigger) > 0.3) {
                 mode = "PID";
-                lift.set_to_high_basket();
+                lift.setHighBasket();
             }
             if (gamepad2.dpad_right) {
                 mode = "PID";
-                lift.set_to_high_chamber();
+                lift.setHighChamber();
             }
             lift.update_pid();
         }
@@ -221,13 +220,13 @@ public class Teleop2 extends OpMode
             }
             if (Math.abs(gamepad2.right_trigger) > 0.3) {
                 mode = "PID";
-                lift.set_to_high_basket();
+                lift.setHighBasket();
             }
             if (gamepad2.dpad_right) {
                 mode = "PID";
-                lift.set_to_high_chamber();
+                lift.setHighChamber();
             }
-            lift.setpower1(gamepad2.right_stick_y);
+            lift.setpowerTeleop(gamepad2.right_stick_y);
         }
     }
 

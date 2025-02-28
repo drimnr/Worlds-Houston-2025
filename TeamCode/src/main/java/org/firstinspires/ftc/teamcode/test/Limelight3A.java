@@ -30,23 +30,20 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
 TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package org.firstinspires.ftc.teamcode.hardware.Commands;
+package org.firstinspires.ftc.teamcode.test;
 
-import com.qualcomm.hardware.limelightvision.LLResult;
-import com.qualcomm.hardware.limelightvision.LLStatus;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.hardware.Commands.Limelight;
 
 public class Limelight3A extends LinearOpMode {
-
-    private com.qualcomm.hardware.limelightvision.Limelight3A limelight;
 
     @Override
     public void runOpMode() throws InterruptedException
     {
-        Limelight limelight1 = new Limelight(hardwareMap, telemetry);
-        limelight1.switch_pipeline(3);
-        limelight1.start_camera();
+        Limelight limelight = new Limelight(hardwareMap, telemetry);
+        limelight.switch_pipeline(3);
+        limelight.start_camera();
 
         waitForStart();
 
@@ -54,6 +51,6 @@ public class Limelight3A extends LinearOpMode {
 
             telemetry.update();
         }
-        limelight.stop();
+        limelight.stop_camera();
     }
 }

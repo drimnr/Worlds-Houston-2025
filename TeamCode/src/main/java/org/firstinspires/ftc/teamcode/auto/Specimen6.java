@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.hardware.Commands.Intake;
 import org.firstinspires.ftc.teamcode.hardware.Commands.Lift;
 import org.firstinspires.ftc.teamcode.hardware.Commands.Limelight;
 import org.firstinspires.ftc.teamcode.hardware.Commands.Outtake;
-import org.firstinspires.ftc.teamcode.hardware.pedroPathing.constants.FConstants2;
+import org.firstinspires.ftc.teamcode.hardware.pedroPathing.constants.FConstants;
 import org.firstinspires.ftc.teamcode.hardware.pedroPathing.constants.LConstants;
 
 
@@ -130,25 +130,25 @@ public class Specimen6 extends OpMode {
                 follower.followPath(scorePreload);
                 setPathState(1);
                 lift.set_target_position(100);
-                //intake.vision();
-                outtake.setautospec();
-                intake.setmidpovishe_take();
+                //intake.setVision();
+                outtake.setAutoSpec();
+                intake.setMidPovisheTake();
                 break;
             case 1:
                 if (!follower.isBusy()) {
                     follower.holdPoint(scorePose);
                     sleep(100);
-                    lift.setpower(0.8);
+                    lift.setPower(0.8);
                     sleep(250);
                     horlift.open();
                     outtake.release();
                     sleep(100);
                     lift.hold_position();
                     lift.set_target_position(0);
-                    outtake.setPered_take();
+                    outtake.setPeredTake();
 
 
-                    intake.vision();
+                    intake.setVision();
                     intake.open();
                     Pose tarpose = pick_center;
                     follower.holdPoint(tarpose);
@@ -170,7 +170,7 @@ public class Specimen6 extends OpMode {
                     follower.holdPoint(cur);
                     sleep(200);
                     Pose target = getsamplepose(follower.getPose());
-                    intake.rotate_auto(limelight.get_angle());
+                    intake.rotate_Auto(limelight.get_angle());
                     double distance = Math.sqrt(Math.pow(target.getX()-cur.getX(), 2) + Math.pow(target.getY()-cur.getY(), 2));
                     PathChain pathChain = follower.pathBuilder()
                             .addPath(new BezierCurve(new Point(follower.getPose()), new Point(target)))
@@ -183,7 +183,7 @@ public class Specimen6 extends OpMode {
                     intake.open();
                     follower.holdPoint(target);
                     //follower.holdPoint(new Pose(target.getX(), target.getY(), Math.toRadians(-90.0)));
-                    intake.setsample_take();
+                    intake.setSampleTake();
                     sleep(300);
 
                     intake.close();
@@ -192,7 +192,7 @@ public class Specimen6 extends OpMode {
 
                     horlift.close();
                     peredacha();
-                    outtake.sethb();
+                    outtake.setHB();
                     follower.followPath(pick1);
                     setPathState(2);
                     break;
@@ -201,7 +201,7 @@ public class Specimen6 extends OpMode {
                 if (!follower.isBusy()) {
                     follower.holdPoint(P1);
                     horlift.open();
-                    intake.setmidpovishe_take();
+                    intake.setMidPovisheTake();
                     sleep(700);
                     taking();
                     horlift.close();
@@ -215,7 +215,7 @@ public class Specimen6 extends OpMode {
                 if (!follower.isBusy()) {
                     follower.holdPoint(P2);
                     horlift.open();
-                    intake.setmidpovishe_take();
+                    intake.setMidPovisheTake();
                     sleep(700);
                     taking();
                     horlift.close();
@@ -229,8 +229,8 @@ public class Specimen6 extends OpMode {
                 if (!follower.isBusy()) {
                     follower.holdPoint(P3);
                     horlift.open();
-                    intake.setmidpovishe_take();
-                    intake.rotate_auto(90);
+                    intake.setMidPovisheTake();
+                    intake.rotate_Auto(90);
                     sleep(700);
                     taking();
                     horlift.close();
@@ -259,9 +259,9 @@ public class Specimen6 extends OpMode {
                     sleep(200);
                     follower.setMaxPower(1);
                     lift.set_target_position(100);
-                    outtake.setautospec();
+                    outtake.setAutoSpec();
                     follower.followPath(scoring2);
-                    intake.setauto();
+                    intake.setAuto();
                     setPathState(6);
                 }
                 break;
@@ -270,13 +270,13 @@ public class Specimen6 extends OpMode {
                 if (!follower.isBusy()) {
                     follower.holdPoint(score2);
                     sleep(100);
-                    lift.setpower(0.8);
+                    lift.setPower(0.8);
                     sleep(250);
                     outtake.release();
                     sleep(100);
                     lift.hold_position();
                     lift.set_target_position(0);
-                    outtake.setZad_take();
+                    outtake.setZadTake();
                     outtake.release();
                     follower.setMaxPower(1.0);
                     sleep(250);
@@ -297,7 +297,7 @@ public class Specimen6 extends OpMode {
                     follower.setMaxPower(1);
                     sleep(200);
                     lift.set_target_position(100);
-                    outtake.setautospec();
+                    outtake.setAutoSpec();
                     follower.followPath(scoring3);
                     setPathState(8);
 
@@ -308,13 +308,13 @@ public class Specimen6 extends OpMode {
                 if (!follower.isBusy()) {
                     follower.holdPoint(score3);
                     sleep(100);
-                    lift.setpower(0.8);
+                    lift.setPower(0.8);
                     sleep(250);
                     outtake.release();
                     sleep(100);
                     lift.hold_position();
                     lift.set_target_position(0);
-                    outtake.setZad_take();
+                    outtake.setZadTake();
                     outtake.release();
                     follower.setMaxPower(1.0);
                     sleep(250);
@@ -335,7 +335,7 @@ public class Specimen6 extends OpMode {
                     follower.setMaxPower(1);
                     sleep(200);
                     lift.set_target_position(100);
-                    outtake.setautospec();
+                    outtake.setAutoSpec();
                     follower.followPath(scoring4);
                     setPathState(10);
 
@@ -346,13 +346,13 @@ public class Specimen6 extends OpMode {
                 if (!follower.isBusy()) {
                     follower.holdPoint(score4);
                     sleep(100);
-                    lift.setpower(0.8);
+                    lift.setPower(0.8);
                     sleep(250);
                     outtake.release();
                     sleep(100);
                     lift.hold_position();
                     lift.set_target_position(0);
-                    outtake.setZad_take();
+                    outtake.setZadTake();
                     follower.setMaxPower(1.0);
                     outtake.release();
                     sleep(250);
@@ -373,7 +373,7 @@ public class Specimen6 extends OpMode {
                     follower.setMaxPower(1);
                     sleep(200);
                     lift.set_target_position(100);
-                    outtake.setautospec();
+                    outtake.setAutoSpec();
                     follower.followPath(scoring5);
                     setPathState(12);
                 }
@@ -383,13 +383,13 @@ public class Specimen6 extends OpMode {
                 if (!follower.isBusy()) {
                     follower.holdPoint(score5);
                     sleep(100);
-                    lift.setpower(0.8);
+                    lift.setPower(0.8);
                     sleep(250);
                     outtake.release();
                     sleep(100);
                     lift.hold_position();
                     lift.set_target_position(0);
-                    outtake.setZad_take();
+                    outtake.setZadTake();
                     follower.setMaxPower(1.0);
                     outtake.release();
                     sleep(250);
@@ -413,31 +413,31 @@ public class Specimen6 extends OpMode {
         pathTimer.resetTimer();
     }
     public void taking () {
-        intake.setsample_take();
+        intake.setSampleTake();
         sleep(200);
         intake.open();
         intake.close();
         sleep(200);
-        intake.setmidpovishe_take();
-        outtake.setPered_take();
+        intake.setMidPovisheTake();
+        outtake.setPeredTake();
     }
     public void peredacha() {
-        outtake.mayat_up();
-        intake.open_chut();
+        outtake.mayatUp();
+        intake.open_Chut();
         sleep(100);
-        intake.rotate_mid();
-        outtake.setPered_take();
-        intake.setperedacha();
+        intake.rotate_Mid();
+        outtake.setPeredTake();
+        intake.setPeredacha();
         sleep(100);
         intake.close();
         sleep(200);
-        outtake.mayat_up1();
+        outtake.mayatUp1();
         outtake.grab();
         sleep(300);
-        //lift.set_to_high_basket();
-        intake.setmidpovishe_take();
+        //lift.setHighBasket();
+        intake.setMidPovisheTake();
         intake.open();
-        outtake.sethb();
+        outtake.setHB();
     }
 
     @Override
@@ -466,14 +466,14 @@ public class Specimen6 extends OpMode {
         horlift = new Horizontal_Lift(hardwareMap, telemetry);
         outtake = new Outtake(hardwareMap, telemetry);
         telemetryA = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-        intake.setperedacha();
+        intake.setPeredacha();
         horlift.close();
         outtake.grab();
         pathTimer = new Timer();
         opmodeTimer = new Timer();
         opmodeTimer.resetTimer();
         timer = new ElapsedTime();
-        Constants.setConstants(FConstants2.class, LConstants.class);
+        Constants.setConstants(FConstants.class, LConstants.class);
         follower = new Follower(hardwareMap);
         follower.setStartingPose(startPose);
         buildPaths();
